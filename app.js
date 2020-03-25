@@ -10,3 +10,57 @@ let arr = [
   86, 75, 51, 92, 11, 39, 95, 48, 21, 3, 47, 20,
   84, 24, 99, 73
 ]
+
+const selectionSort = arr => {
+  
+  let min
+
+  for (let i = 0; i < arr.length; i++) {
+    min = i
+
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[min]) {
+        min = j
+      }
+    }
+
+    if (i !== min) {
+      let temp = arr[i]
+      arr[i] = arr[min]
+      arr[min] = temp
+    }
+  }
+
+  return arr
+}
+
+const insertionSort = arr => {
+
+  let value, j
+
+  for (let i = 0; i < arr.length; i++) {
+
+    value = arr[i]
+
+    for (j = i - 1; j > -1 && arr[j] > value; j--) {
+      arr[j + 1] = arr[j]
+    }
+
+    arr[j + 1] = value
+  }
+
+  return arr
+}
+
+const quickSort = arr => {
+  if (arr.length < 2) {
+    return arr
+  }
+
+  const pivot = arr[Math.floor(Math.random() * arr.length)]
+
+  return [...quickSort(arr.filter(x => x <= pivot)), ...quickSort(arr.filter(x => x > pivot))]
+}
+
+
+arr.sort((a, b) => a - b)
